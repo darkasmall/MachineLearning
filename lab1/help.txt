@@ -1,0 +1,58 @@
+Запуск: ipython notebook
+Shift Enter - запуск текущей ячейки
+По умолчанию печатается то, что возвращается последней командой
+
+Импорт библиотеки Pandas
+import pandas as pd
+
+Чтение csv
+data = pd.read_csv('data.csv', delimiter=',')
+data.describe()   - вывод описания данных
+data.head(10) - первые 10 строк
+
+Обращение к элементам DataFrame:
+  элемент: data[i, 'названиеСтолбца']
+  столбец: data['названиеСтолбца']
+  подматрица: data.ix[a:b, списокНазванийСтолбцов]
+
+Условная индексация:
+data.ix[ data['столбец']>20, списокНазванийСтолбцов]
+
+У подматриц номера строк наследуются от исходной.
+
+Циклы: 
+for i in range(0,20):
+    оператор1
+    оператор2
+оператор после цикла
+
+Итерация по строкам DataFrame:
+for idx, row in data.iterrows():
+    ...  idx - номер строки, row['столбец'] - значение элемента
+  
+pandas.isnull(скаляр или массив) - проверка, является ли значение неопределенным (NaN)
+pandas.notnull(скаляр или массив) - проверка, является ли значение определенным (не NaN)
+
+data['столбец'].mean() - среднее, еще есть min, max, sum и др (см. http://pandas.pydata.org/pandas-docs/stable/api.html#dataframe )
+data['столбец1'].groupby(data['столбец2']).mean()  - расчет средних значений столбца1 по гуппам из столбца2
+
+Рисование:
+%matplotlib inline
+import matplotlib.pyplot as plt
+plt.plot(x, y)  см. http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot
+plt.show()
+
+Рисование гистограмм:
+plt.hist  см. http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.hist
+  
+Рисование нескольких графиков на одном:
+fig, ax = plt.subplots()
+ax.hist(...)
+ax.hist(...)
+plt.show()
+
+Логарифмическая шкала:
+ax.set_xscale('log')  или ax.set_yscale('log')
+
+Ограничение области графика:
+ax.axis([x1, x2, y1, y2])
